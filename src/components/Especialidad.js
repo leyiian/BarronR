@@ -5,6 +5,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Form, Row, Button, Container } from "react-bootstrap";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
+import Config from "../Config";
 
 function Especialidad() {
   const [especialidad, setEspecialidad] = useState("");
@@ -20,7 +21,7 @@ function Especialidad() {
   }, []);
   const fnEspecialidad = async () => {
     const response =
-      await axios.post("http://127.0.0.1:8000/api/especialidad",{ id: id });
+      await axios.post(`${Config.baseURL}/especialidad`,{ id: id });
     setEspecialidad(response.data.nombre);
   };
 
@@ -28,7 +29,7 @@ function Especialidad() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/especialidad/guardar",
+        `${Config.baseURL}/especialidad/guardar`,
         {
           id: id,
           nombre: especialidad,

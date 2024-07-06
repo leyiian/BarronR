@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Col, Card, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import Config from "../Config";
 
 function Registro() {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ function Registro() {
     setIsLoading(true);
     setError('');
     try {
-      const response = await axios.post('http://localhost:8000/api/registro', formData);
+      const response = await axios.post(`${Config.baseURL}/registro`, formData);
       if (response.data.acceso === "Ok") {
         navigate('/')
       } else {

@@ -7,6 +7,7 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import Table from "react-bootstrap/Table";
 import { useNavigate, NavLink } from "react-router-dom";
+import Config from "../Config";
 
 function Home() {
   const [especialidades, setEspecialidades] = useState([]);
@@ -17,14 +18,10 @@ function Home() {
     fnEspecialidad();
   }, []);
 
-  //const eliminarEspecialidad = async (id) => {
-  //  const response = await axios.post('http://127.0.0.1:8000/api/especialidad/eliminar')
-  //}
-
   const eliminarEspecialidad = async (id) => {
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/api/especialidad/eliminar",
+        `${Config.baseURL}/especialidad/eliminar`,
         {
           id: id,
         }
@@ -44,7 +41,7 @@ function Home() {
   const fnEspecialidad = async (e) => {
     try {
       const response = await axios.get(
-        "http://127.0.0.1:8000/api/especialidades"
+        `${Config.baseURL}/especialidades`
       );
       setEspecialidades(response.data);
     } catch (error) {
@@ -59,7 +56,9 @@ function Home() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link as={NavLink} to='/home'>Especialidad</Nav.Link>
+              <Nav.Link as={NavLink} to="/home">
+                Especialidad
+              </Nav.Link>
               <Nav.Link href="#link">Link</Nav.Link>
               <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -94,6 +93,7 @@ function Home() {
             </tr>
           </thead>
           <tbody>
+
             {especialidades.map((item, index) => (
               <tr key={item.id}>
                 <td>{item.id}</td>

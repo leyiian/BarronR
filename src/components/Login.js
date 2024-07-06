@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Form, Button, Container, Card, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import Config from "../Config";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -25,8 +26,22 @@ function Login() {
     setIsLoading(true);
     setError('');
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/login', formData);
+      const response = await axios.post(`${Config.baseURL}/login`, formData, {
+        headers: Config.getHeaders()
+      });
       if (response.data.acceso === "OK") {
+
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('idUsuario', response.data.idUsuario);
+        localStorage.setItem('nombreUsuario', response.data.nombreUsuario);
+
+
+        console.log('Datos guardados en localStorage:', {
+          token: response.data.token,
+          idUsuario: response.data.idUsuario,
+          nombreUsuario: response.data.nombreUsuario
+        });
+        
         navigate('/home');
       } else {
         setError(response.data.error);
