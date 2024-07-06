@@ -8,11 +8,13 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import Table from "react-bootstrap/Table";
 import { useNavigate, NavLink } from "react-router-dom";
 import Config from "../Config";
+import { Calendar } from 'primereact/calendar';
 
 function Home() {
   const [especialidades, setEspecialidades] = useState([]);
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const [date, setDate] = useState(null);
 
   useEffect(() => {
     fnEspecialidad();
@@ -83,7 +85,7 @@ function Home() {
         <Button onClick={() => navigate("/especialidad")} size="sm">
           Nuevo Registro
         </Button>
-
+        <Calendar value={date} onChange={(e) => setDate(e.value)} showIcon />
         <Table striped bordered hover>
           <thead>
             <tr>
