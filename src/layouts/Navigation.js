@@ -28,6 +28,7 @@ function Navigation() {
               Especialidad
             </Nav.Link>
             <Nav.Link as={NavLink} to="/nueva_cita" >Generar cita</Nav.Link>
+            <Nav.Link as={NavLink} to="/autorizar_citas" >Autorizar Citas</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">

@@ -44,29 +44,29 @@ function AutCitas() {
     }
   };
   
-  const onRowEditComplete = async (event) => {
-    try {
-      const { id, Observaciones, fecha, estado, id_paciente } = event.data;
-      const response = await axios.post(`${Config.baseURL}/cita/guardar`, {
-        id,
-        Observaciones,
-        fecha,
-        estado,
-        id_paciente
-      });
-      console.log(event.data);
-      console.log('Cita actualizada:', response.data);
-  
-      // Actualiza el estado local
-      setCitas(prevCitas => 
-        prevCitas.map(cita => 
-          cita.id === id ? { ...cita, Observaciones, fecha, estado } : cita
-        )
-      );
-    } catch (error) {
-      console.error('Error al actualizar la cita:', error);
-    }
-  };
+const onRowEditComplete = async (event) => {
+  try {
+    const { id, Observaciones, fecha, estado, id_paciente } = event.data;
+    const response = await axios.post(`${Config.baseURL}/cita/guardar`, {
+      id,
+      Observaciones,
+      fecha,
+      estado,
+      id_paciente
+    });
+    console.log(event.data);
+    console.log('Cita actualizada:', response.data);
+
+    // Actualiza el estado local
+    setCitas(prevCitas => 
+      prevCitas.map(cita => 
+        cita.id === id ? { ...cita, Observaciones, fecha, estado } : cita
+      )
+    );
+  } catch (error) {
+    console.error('Error al actualizar la cita:', error);
+  }
+};
 
   const getSeverity = (estado) => {
     switch (estado) {
@@ -103,11 +103,9 @@ function AutCitas() {
   
   
   const onStatusChange = (index, newEstado) => {
-    setCitas(prevCitas => {
-      const updatedCitas = [...prevCitas];
-      updatedCitas[index] = { ...updatedCitas[index], estado: newEstado };
-      return updatedCitas;
-    });
+    let updatedCitas = [...citas]; // Clonar el arreglo de citas
+    updatedCitas[index].estado = newEstado; // Actualizar el estado en el índice dado
+    setCitas(updatedCitas); // Actualizar el estado de citas
   };
   
 
