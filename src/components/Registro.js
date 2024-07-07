@@ -1,104 +1,146 @@
-import axios from "axios";
 import React, { useState } from "react";
-import { Form, Button, Container, Row, Col, Card, Alert } from "react-bootstrap";
+import { Form, Button, Container, Card, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Config from "../Config";
 
 function Registro() {
-  const navigate = useNavigate();
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: ''
+    nombre: "",
+    apPat: "",
+    apMat: "",
+    email: "",
+    password: "",
+    telefono: "",
   });
+
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
-  const registroxd = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setError('');
+    setError("");
     try {
-      const response = await axios.post(`${Config.baseURL}/registro`, formData);
-      if (response.data.acceso === "Ok") {
-        navigate('/')
+      const response = await axios.post(`${Config.baseURL}/paciente/guardar`, formData);
+      if (response.data === "Ok") {
+        navigate("/");
       } else {
-        setError(response.data.error || 'Ocurrió un error desconocido.');
+        setError("Error al registrar. Intente de nuevo.");
       }
     } catch (error) {
-      setError('Ocurrió un error al registrar el usuario.');
-      console.error('Ocurrió un error: ', error);
+      setError("Ocurrió un error al registrar. Intente de nuevo.");
+      console.error("Error:", error);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <Container className="mt-5">
-      <Row className="justify-content-md-center">
-        <Col md={6}>
-          <Card className="shadow-sm">
-            <Card.Body>
-              <h2 className="text-center mb-4">Registro</h2>
-              {error && <Alert variant="danger">{error}</Alert>}
-              <Form onSubmit={registroxd}>
-                <Form.Group className="mb-3" controlId="formName">
-                  <Form.Label>Nombre</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Ingrese su nombre"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formEmail">
-                  <Form.Label>Correo electrónico</Form.Label>
-                  <Form.Control
-                    type="email"
-                    placeholder="Ingrese su email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formPassword">
-                  <Form.Label>Contraseña</Form.Label>
-                  <Form.Control
-                    type="password"
-                    placeholder="Ingrese su contraseña"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
-
-                <div className="d-grid gap-2">
-                  <Button variant="primary" type="submit" disabled={isLoading}>
-                    {isLoading ? 'Registrando...' : 'Registrarse'}
-                  </Button>
-                </div>
-              </Form>
-            </Card.Body>
-          </Card>
-          <div className="text-center mt-3">
-            ¿Ya tienes una cuenta? <a href="/">Inicia sesión</a>
-          </div>
-        </Col>
-      </Row>
+    <Container
+      className="d-flex justify-content-center align-items-center"
+      style={{ minHeight: "100vh" }}
+    >
+      <Card className="shadow-sm" style={{ width: "100%", maxWidth: "400px" }}>
+        <Card.Body>
+          <h2 className="text-center mb-4">Registro de Paciente</h2>
+          {error && <Alert variant="danger">{error}</Alert>}
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3" controlId="formNombre">
+              <Form.Label>Nombre(s)</Form.Label>
+              <Form.Control
+                type="text"
+                name="nombre"
+                placeholder="Nombre(s)"
+                value={formData.nombre}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <div className="mb-3 d-flex">
+              <div className="me-2 flex-grow-1">
+                <Form.Label>Apellido Paterno</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="apPat"
+                  placeholder="Apellido Paterno"
+                  value={formData.apPat}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="flex-grow-1">
+                <Form.Label>Apellido Materno</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="apMat"
+                  placeholder="Apellido Materno"
+                  value={formData.apMat}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+            <Form.Group className="mb-3" controlId="formEmail">
+              <Form.Label>Correo Electrónico</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                placeholder="Correo Electrónico"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formPassword">
+              <Form.Label>Contraseña</Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                placeholder="Contraseña"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formTelefono">
+              <Form.Label>Teléfono</Form.Label>
+              <Form.Control
+                type="tel"
+                name="telefono"
+                placeholder="Teléfono"
+                value={formData.telefono}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <div className="d-grid gap-2">
+              <Button
+                variant="primary"
+                type="submit"
+                disabled={isLoading}
+              >
+                {isLoading ? "Registrando..." : "Registrar"}
+              </Button>
+              <Button
+                variant="outline-secondary"
+                onClick={() => navigate("/login")}
+              >
+                Iniciar Sesión
+              </Button>
+            </div>
+          </Form>
+        </Card.Body>
+      </Card>
     </Container>
   );
 }

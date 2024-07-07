@@ -1,12 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import Table from "react-bootstrap/Table";
-import { useNavigate, NavLink } from "react-router-dom";
+import { Button, Container, Table, Alert } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import Config from "../Config";
 
 function Home() {
@@ -18,16 +13,9 @@ function Home() {
     fnEspecialidad();
   }, []);
 
-
   const eliminarEspecialidad = async (id) => {
     try {
-      const response = await axios.post(
-        `${Config.baseURL}/especialidad/eliminar`,
-        {
-          id: id,
-        }
-      );
-      console.log(response.data);
+      const response = await axios.post(`${Config.baseURL}/especialidad/eliminar`, { id });
       if (response.data === "OK") {
         fnEspecialidad();
       } else {
@@ -39,62 +27,60 @@ function Home() {
     }
   };
 
-  const fnEspecialidad = async (e) => {
+  const fnEspecialidad = async () => {
     try {
-      const response = await axios.get(
-        `${Config.baseURL}/especialidades`
-      );
+      const response = await axios.get(`${Config.baseURL}/especialidades`);
       setEspecialidades(response.data);
     } catch (error) {
+      setError("Ocurrió un error al cargar las especialidades");
       console.error("Ocurrió un error: ", error);
     }
   };
+
   return (
-    <div>
-
-      <Container>
-        <h1>Especialidades</h1>
-        <Button onClick={() => navigate("/especialidad")} size="sm">
-          Nuevo Registro
+    <Container className="mt-5">
+      <h1 className="text-center mb-4">Especialidades</h1>
+      {error && <Alert variant="danger">{error}</Alert>}
+      <div className="d-flex justify-content-end mb-3">
+        <Button className="pi pi-plus-circle" variant="outline-success" onClick={() => navigate("/especialidad")} size="sm">
+          
         </Button>
-
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Nombre</th>
-              <th>Acciones</th>
+      </div>
+      <Table striped bordered hover responsive="md">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {especialidades.map((item) => (
+            <tr key={item.id}>
+              <td>{item.id}</td>
+              <td>{item.nombre}</td>
+              <td>
+                <Button
+                  onClick={() => navigate(`/especialidad/${item.id}`)}
+                  variant="primary"
+                  size="sm"
+                  className="me-2"
+                >
+                  Editar
+                </Button>
+                <Button
+                  onClick={() => eliminarEspecialidad(item.id)}
+                  variant="danger"
+                  size="sm"
+                >
+                  Eliminar
+                </Button>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-
-            {especialidades.map((item, index) => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.nombre}</td>
-                <td>
-                  <Button
-                    onClick={() => navigate(`/especialidad/${item.id}`)}
-                    variant="primary"
-                    size="sm"
-                    className="me-2"
-                  >
-                    Editar
-                  </Button>
-                  <Button
-                    onClick={() => eliminarEspecialidad(item.id)}
-                    variant="danger"
-                    size="sm"
-                  >
-                    Eliminar
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-      </Container>
-    </div>
+          ))}
+        </tbody>
+      </Table>
+    </Container>
   );
 }
 
