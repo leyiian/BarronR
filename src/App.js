@@ -10,6 +10,7 @@ import "primereact/resources/themes/lara-light-cyan/theme.css";
 import Navigation from "./layouts/Navigation";
 import Citas from "./components/Citas";
 import 'primeicons/primeicons.css';
+import Especialidades from "./components/Especialidades";
         
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/" Component={Login}></Route>
         <Route path="/registro" Component={Registro}></Route>
           <Route path="/home" Component={Home}></Route>
+          <Route path="/especialidades" Component={Especialidades}></Route>
           <Route path="/especialidad/:id?" Component={Especialidad}></Route>
           <Route path="/nueva_cita" Component={Citas}></Route>
         </Routes>
