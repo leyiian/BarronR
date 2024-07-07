@@ -27,11 +27,17 @@ function VerCitas() {
             `${Config.baseURL}/paciente`,
             { id: cita.id_paciente }
           );
+          const especialidadResponse = await axios.post(
+            `${Config.baseURL}/especialidad`,
+            { id: cita.id_especialidades }
+          );
           const paciente = pacienteResponse.data;
+          const especialidad = especialidadResponse.data;
           const nombreCompleto = `${paciente.nombre} ${paciente.apPat} ${paciente.apMat}`;
           return {
             ...cita,
             nombre_paciente: nombreCompleto,
+            especialidad: especialidad.nombre,
           };
         })
       );
@@ -93,7 +99,7 @@ function VerCitas() {
             <Column
               field="nombre_paciente"
               header="Nombre"
-              style={{ width: "20%" }}
+              style={{ width: "16%" }}
             />
             <Column field="fecha" header="Fecha" style={{ width: "15%" }} />
             <Column
@@ -102,8 +108,8 @@ function VerCitas() {
               style={{ width: "20%" }}
             />
             <Column field="id_consultorio" header="Consultorio" style={{ width: "5%" }} />
-            <Column field="id_doctor" header="Doctor" style={{ width: "20%" }} />
-            <Column field="id_especialidades" header="Especialidad" style={{ width: "10%" }} />
+            <Column field="id_doctor" header="Doctor" style={{ width: "15%" }} />
+            <Column field="especialidad" header="Especialidad" style={{ width: "10%" }} />
             <Column
               field="estado"
               header="Estado"
