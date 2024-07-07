@@ -11,6 +11,7 @@ import Navigation from "./layouts/Navigation";
 import Citas from "./components/Citas";
 import 'primeicons/primeicons.css';
 import Especialidades from "./components/Especialidades";
+import AutCitas from "./components/AutCitas";
         
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/especialidades" Component={Especialidades}></Route>
           <Route path="/especialidad/:id?" Component={Especialidad}></Route>
           <Route path="/nueva_cita" Component={Citas}></Route>
+          <Route path="/autorizar_citas" Component={AutCitas}></Route>
         </Routes>
       </BrowserRouter>
     </PrimeReactProvider>

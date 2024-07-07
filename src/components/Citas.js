@@ -4,7 +4,7 @@ import { Calendar } from "primereact/calendar";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
-import Config from "../Config";
+import Config from "../Config/Config";
 import { useNavigate } from "react-router-dom";
 
 function Citas() {
@@ -14,6 +14,7 @@ function Citas() {
     id_paciente: null,
     fecha: null,
     Observaciones: "",
+    estado: "Pendiente",
     id_consultorio: null,
     id_doctor: null,
   });

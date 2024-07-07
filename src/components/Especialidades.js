@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Container, Table, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import Config from "../Config";
+import Config from "../Config/Config";
 
 function Especialidades() {
     const [especialidades, setEspecialidades] = useState([]);
