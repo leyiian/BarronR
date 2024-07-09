@@ -34,6 +34,7 @@ function AutCitas() {
             nombre_paciente: nombreCompleto,
           };
         })
+
       );
       setCitas(citasWithData);
 
