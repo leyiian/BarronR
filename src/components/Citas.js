@@ -11,7 +11,7 @@ function Citas() {
   const [error, setError] = useState("");
   const [especialidades, setEspecialidades] = useState([]);
   const [formData, setFormData] = useState({
-    id_paciente: null,
+    idUsr: null,
     fecha: null,
     Observaciones: "",
     estado: "Pendiente",
@@ -34,11 +34,11 @@ function Citas() {
 
     obtenerEspecialidades();
 
-    const id_paciente = localStorage.getItem("idUsuario");
-    if (id_paciente) {
+    const idUsr = localStorage.getItem("idUsuario");
+    if (idUsr) {
       setFormData((prevFormData) => ({
         ...prevFormData,
-        id_paciente: id_paciente,
+        idUsr: idUsr,
       }));
     }
   }, []);

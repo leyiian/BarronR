@@ -46,13 +46,13 @@ function AutCitas() {
   
 const onRowEditComplete = async (event) => {
   try {
-    const { id, Observaciones, fecha, estado, id_paciente, id_especialidades } = event.data;
+    const { id, Observaciones, fecha, estado, idUsr, id_especialidades } = event.data;
     const response = await axios.post(`${Config.baseURL}/cita/guardar`, {
       id,
       Observaciones,
       fecha,
       estado,
-      id_paciente,
+      idUsr,
       id_especialidades
     });
     console.log(event.data);
