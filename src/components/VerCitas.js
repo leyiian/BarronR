@@ -5,6 +5,7 @@ import { Container, Form } from "react-bootstrap";
 import Config from "../Config/Config";
 import axios from "axios";
 import { Tag } from "primereact/tag";
+import instance from "../Config/AxiosConfig";
 
 function VerCitas() {
   const [citas, setCitas] = useState([]);
@@ -19,20 +20,20 @@ function VerCitas() {
 
   const fetchCitas = async () => {
     try {
-      const response = await axios.get(`${Config.baseURL}/citas`);
+      const response = await instance.get(`/citas`);
       console.log(response.data)
       const citasWithData = await Promise.all(
         response.data.map(async (cita) => {
-          const pacienteResponse = await axios.post(
-            `${Config.baseURL}/paciente`,
+          const pacienteResponse = await instance.post(
+            `/paciente`,
             { id: cita.id_paciente }
           );
-          const especialidadResponse = await axios.post(
-            `${Config.baseURL}/especialidad`,
+          const especialidadResponse = await instance.post(
+            `/especialidad`,
             { id: cita.id_especialidades }
           );
-          const doctorResponse = await axios.post(
-            `${Config.baseURL}/doctor`,
+          const doctorResponse = await instance.post(
+            `/doctor`,
             { id: cita.id_doctor }
           );
           const doctor = doctorResponse.data;

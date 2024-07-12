@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Container, Table, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import Config from "../Config/Config";
+import instance from "../Config/AxiosConfig";
 
 function Especialidades() {
     const [especialidades, setEspecialidades] = useState([]);
@@ -15,7 +16,7 @@ function Especialidades() {
   
     const eliminarEspecialidad = async (id) => {
       try {
-        const response = await axios.post(`${Config.baseURL}/especialidad/eliminar`, { id });
+        const response = await instance.post(`/especialidad/eliminar`, { id });
         if (response.data === "OK") {
           fnEspecialidad();
         } else {
@@ -29,7 +30,7 @@ function Especialidades() {
   
     const fnEspecialidad = async () => {
       try {
-        const response = await axios.get(`${Config.baseURL}/especialidades`);
+        const response = await instance.get(`/especialidades`);
         setEspecialidades(response.data);
       } catch (error) {
         setError("Ocurrió un error al cargar las especialidades");

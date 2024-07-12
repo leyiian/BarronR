@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Form, Row, Button, Container, Col } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import Config from "../Config/Config";
+import instance from "../Config/AxiosConfig";
 
 function Especialidad() {
   const [especialidad, setEspecialidad] = useState("");
@@ -18,7 +19,7 @@ function Especialidad() {
 
   const fnEspecialidad = async () => {
     try {
-      const response = await axios.post(`${Config.baseURL}/especialidad`, { id });
+      const response = await instance.post(`/especialidad`, { id });
       setEspecialidad(response.data.nombre);
     } catch (error) {
       setError("Ocurrió un error al cargar la especialidad");
@@ -29,7 +30,7 @@ function Especialidad() {
   const enviarEspecialidad = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${Config.baseURL}/especialidad/guardar`, {
+      const response = await instance.post(`/especialidad/guardar`, {
         id,
         nombre: especialidad,
       });
