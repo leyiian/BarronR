@@ -26,7 +26,7 @@ function Login() {
     setIsLoading(true);
     setError('');
     try {
-      const response = await axios.post(`/login`, formData, {
+      const response = await axios.post(`${Config.baseURL}/login`, formData, {
         headers: Config.getHeaders()
       });
       if (response.data.acceso === "OK") {

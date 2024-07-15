@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Button, Alert, Form } from "react-bootstrap"; 
 import { Calendar } from "primereact/calendar";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
-import axios from "axios";
-import Config from "../Config/Config";
 import { useNavigate } from "react-router-dom";
+import instance from "../Config/AxiosConfig";
 
 function Citas() {
   const navigate = useNavigate();
@@ -24,7 +23,7 @@ function Citas() {
   useEffect(() => {
     const obtenerEspecialidades = async () => {
       try {
-        const response = await axios.get(`${Config.baseURL}/especialidades`);
+        const response = await instance.get(`/especialidades`);
         setEspecialidades(response.data);
       } catch (error) {
         setError("Ocurrió un error al cargar las especialidades");
@@ -70,8 +69,8 @@ function Citas() {
         return;
       }
 
-      const response = await axios.post(
-        `${Config.baseURL}/cita/guardar`,
+      const response = await instance.post(
+        `/cita/guardar`,
         formData
       );
       //console.log(formData)
