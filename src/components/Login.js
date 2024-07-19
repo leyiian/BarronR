@@ -6,105 +6,140 @@ import Config from "../Config/Config";
 
 function Login() {
   const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
   const loginValidate = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setError('');
+    setError("");
     try {
       const response = await axios.post(`${Config.baseURL}/login`, formData, {
-        headers: Config.getHeaders()
+        headers: Config.getHeaders(),
       });
       if (response.data.acceso === "OK") {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("idUsuario", response.data.idUsuario);
+        localStorage.setItem("nombreUsuario", response.data.nombreUsuario);
 
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('idUsuario', response.data.idUsuario);
-        localStorage.setItem('nombreUsuario', response.data.nombreUsuario);
-
-
-        console.log('Datos guardados en localStorage:', {
+        console.log("Datos guardados en localStorage:", {
           token: response.data.token,
           idUsuario: response.data.idUsuario,
-          nombreUsuario: response.data.nombreUsuario
+          nombreUsuario: response.data.nombreUsuario,
         });
-        
-        navigate('/home');
+
+        navigate("/home");
       } else {
         setError(response.data.error);
       }
     } catch (error) {
-      setError('Ocurrió un error al iniciar sesión. Por favor, intente de nuevo.');
-      console.error('Ocurrió un error: ', error);
+      setError(
+        "Ocurrió un error al iniciar sesión. Por favor, intente de nuevo."
+      );
+      console.error("Ocurrió un error: ", error);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <Container 
-      className="d-flex justify-content-center align-items-center" 
-      style={{ minHeight: "100vh" }}
+    <div
+      style={{
+        minHeight: "100vh",
+        backgroundColor: '#e9f5f9',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
     >
-      <Card className="shadow-sm" style={{ width: '100%', maxWidth: '400px' }}>
-        <Card.Body>
-          <h2 className="text-center mb-4">Iniciar Sesión</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          <Form onSubmit={loginValidate}>
-            <Form.Group className="mb-3" controlId="formEmail">
-              <Form.Label>Correo Electrónico</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                placeholder="name@example.com"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formPassword">
-              <Form.Label>Contraseña</Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                placeholder="Contraseña"
-                value={formData.password}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-            <div className="d-grid gap-2">
-              <Button
-                variant="primary"
-                type="submit"
-                disabled={isLoading}
-              >
-                {isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
-              </Button>
-              <Button
-                variant="outline-secondary"
-                onClick={() => navigate("/registro")}
-              >
-                Registrarse
-              </Button>
-            </div>
-          </Form>
-        </Card.Body>
-      </Card>
-    </Container>
+      <Container
+        className="d-flex justify-content-center align-items-center"
+        style={{ width: "100%", maxWidth: "450px" }}
+      >
+        <Card
+          className="shadow-lg border-0"
+          style={{
+            width: "100%",
+            borderRadius: "12px", // Bordes redondeados del card
+          }}
+        >
+          <Card.Body>
+            <h2 className="text-center mb-4" style={{ color: "#003d5b" }}>
+              Iniciar Sesión
+            </h2>{" "}
+            {/* Color profesional */}
+            {error && <Alert variant="danger">{error}</Alert>}
+            <Form onSubmit={loginValidate}>
+              <Form.Group className="mb-3" controlId="formEmail">
+                <Form.Label>Correo Electrónico</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  placeholder="name@example.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  style={{
+                    borderRadius: "8px",
+                    borderColor: "#d6d6d6",
+                    boxShadow: "none", // Elimina sombra del borde
+                  }}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formPassword">
+                <Form.Label>Contraseña</Form.Label>
+                <Form.Control
+                  type="password"
+                  name="password"
+                  placeholder="Contraseña"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                  style={{
+                    borderRadius: "8px",
+                    borderColor: "#d6d6d6",
+                    boxShadow: "none", // Elimina sombra del borde
+                  }}
+                />
+              </Form.Group>
+              <div className="d-grid gap-2">
+                <Button
+                  variant="primary"
+                  type="submit"
+                  disabled={isLoading}
+                  style={{
+                    borderRadius: "8px",
+                    backgroundColor: "#003d5b",
+                    borderColor: "#003d5b",
+                  }} // Color de botón profesional
+                >
+                  {isLoading ? "Iniciando sesión..." : "Iniciar Sesión"}
+                </Button>
+                <Button
+                  variant="outline-secondary"
+                  onClick={() => navigate("/registro")}
+                  style={{ borderRadius: "8px" }} // Bordes redondeados para el botón de registro
+                >
+                  Registrarse
+                </Button>
+              </div>
+            </Form>
+          </Card.Body>
+        </Card>
+      </Container>
+    </div>
   );
 }
 

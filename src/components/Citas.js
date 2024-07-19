@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Button, Alert, Form } from "react-bootstrap"; 
+import { Container, Row, Col, Button, Alert, Form } from "react-bootstrap";
 import { Calendar } from "primereact/calendar";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ function Citas() {
     fecha: null,
     Observaciones: "",
     estado: "Pendiente",
-    id_especialidades: null, 
+    id_especialidades: null,
     id_consultorio: null,
     id_doctor: null,
   });
@@ -69,11 +69,7 @@ function Citas() {
         return;
       }
 
-      const response = await instance.post(
-        `/cita/guardar`,
-        formData
-      );
-      //console.log(formData)
+      const response = await instance.post(`/cita/guardar`, formData);
       if (response.data === "Ok") {
         navigate("/ver_citas");
       } else {
@@ -86,70 +82,96 @@ function Citas() {
   };
 
   return (
-    <Container
-      className="d-flex justify-content-center align-items-center"
-      style={{ minHeight: "100vh" }}
+    <div
+      style={{
+        minHeight: "100vh",
+        backgroundColor: "#e9f5f9",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
     >
-      <Row className="shadow-lg p-3 mb-5 bg-white rounded w-100">
-        <Col md={6} className="mx-auto">
-          <h2 className="text-center mb-4">Registrar Cita</h2>
-          {error && <Alert variant="danger">{error}</Alert>}
-          <Form onSubmit={guardarCita}>
-            <Form.Group controlId="formFecha" className="mb-4">
-              <Form.Label className="d-block text-center mb-2">
-                Seleccione la Fecha y Hora
-              </Form.Label>
-              <Calendar
-                id="calendar-24h"
-                value={formData.fecha}
-                onChange={handleCalendarChange}
-                showTime
-                hourFormat="24"
-                showIcon
-                className="w-100"
-              />
-            </Form.Group>
-            <Form.Group controlId="floatingTextarea2" className="mb-4">
-              <FloatingLabel
-                controlId="floatingTextarea2"
-                label="Observaciones"
-              >
-                <Form.Control
-                  as="textarea"
-                  placeholder="Leave a comment here"
-                  style={{ height: "150px" }}
-                  value={formData.Observaciones}
-                  onChange={handleObservacionesChange}
+      <Container
+        className="d-flex justify-content-center align-items-center"
+        style={{ minHeight: "100vh" }}
+      >
+        <Row
+          className="shadow-lg p-4 mb-5 bg-white rounded w-100"
+          style={{ maxWidth: "600px" }}
+        >
+          <Col md={12} className="mx-auto">
+            <h2 className="text-center mb-4" style={{ color: "#0056b3" }}>
+              Registrar Cita
+            </h2>
+            {error && <Alert variant="danger">{error}</Alert>}
+            <Form onSubmit={guardarCita}>
+              <Form.Group controlId="formFecha" className="mb-4">
+                <Form.Label className="d-block mb-2" style={{ color: "#333" }}>
+                  Seleccione la Fecha y Hora
+                </Form.Label>
+                <Calendar
+                  id="calendar-24h"
+                  value={formData.fecha}
+                  onChange={handleCalendarChange}
+                  showTime
+                  hourFormat="24"
+                  showIcon
+                  className="w-100"
+                  style={{ border: "1px solid #ced4da", borderRadius: "4px" }}
                 />
-              </FloatingLabel>
-            </Form.Group>
-            <Form.Group controlId="formEspecialidad" className="mb-4">
-              <Form.Label>Seleccione una Especialidad</Form.Label>
-              <Form.Select
-                aria-label="Seleccione una especialidad"
-                value={formData.id_especialidades}
-                onChange={handleEspecialidadChange}
-              >
-                <option value="">Seleccione una especialidad</option>
-                {especialidades.map((especialidad) => (
-                  <option key={especialidad.id} value={especialidad.id}>
-                    {especialidad.nombre}
-                  </option>
-                ))}
-              </Form.Select>
-            </Form.Group>
-            <div className="d-grid gap-2">
-              <Button variant="primary" type="submit">
-                Guardar Cita
-              </Button>
-              <Button variant="secondary" onClick={() => navigate("/home")}>
-                Cancelar
-              </Button>
-            </div>
-          </Form>
-        </Col>
-      </Row>
-    </Container>
+              </Form.Group>
+              <Form.Group controlId="floatingTextarea2" className="mb-4">
+                <FloatingLabel
+                  controlId="floatingTextarea2"
+                  label="Observaciones"
+                >
+                  <Form.Control
+                    as="textarea"
+                    placeholder="Leave a comment here"
+                    style={{
+                      height: "150px",
+                      borderRadius: "4px",
+                      borderColor: "#ced4da",
+                    }}
+                    value={formData.Observaciones}
+                    onChange={handleObservacionesChange}
+                  />
+                </FloatingLabel>
+              </Form.Group>
+              <Form.Group controlId="formEspecialidad" className="mb-4">
+                <Form.Label style={{ color: "#333" }}>
+                  Seleccione una Especialidad
+                </Form.Label>
+                <Form.Select
+                  aria-label="Seleccione una especialidad"
+                  value={formData.id_especialidades}
+                  onChange={handleEspecialidadChange}
+                  style={{ border: "1px solid #ced4da", borderRadius: "4px" }}
+                >
+                  <option value="">Seleccione una especialidad</option>
+                  {especialidades.map((especialidad) => (
+                    <option key={especialidad.id} value={especialidad.id}>
+                      {especialidad.nombre}
+                    </option>
+                  ))}
+                </Form.Select>
+              </Form.Group>
+              <div className="d-grid gap-2">
+                <Button variant="outline-primary" type="submit">
+                  Guardar Cita
+                </Button>
+                <Button
+                  variant="outline-danger"
+                  onClick={() => navigate("/home")}
+                >
+                  Cancelar
+                </Button>
+              </div>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 }
 

@@ -1,45 +1,45 @@
-/* Navbar.css */
-
 .custom-navbar {
-    background-color: #343a40;
-  }
-  
-  .custom-brand {
-    color: #ffffff !important;
-  }
-  
-  .custom-navbar .nav-link {
-    color: #ffffff !important;
-    margin-right: 15px;
-  }
-  
-  .custom-navbar .nav-link:hover {
-    color: #adb5bd !important;
-  }
-  
-  .custom-navbar .navbar-toggler {
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-  
-  .custom-navbar .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 0.5%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-  }
-  
-  .custom-navbar .nav-item .dropdown-menu {
-    background-color: #343a40;
-    border: none;
-  }
-  
-  .custom-navbar .nav-item .dropdown-item {
-    color: #ffffff;
-  }
-  
-  .custom-navbar .nav-item .dropdown-item:hover {
-    background-color: #495057;
-  }
-  
-  .login-button,
-  .logout-button {
-    margin-left: 10px;
-  }
-  
+  background-color: #007ebd; /* Azul oscuro profesional */
+  border-bottom: 1px solid #004f73; /* Línea inferior para definición */
+}
+
+.custom-brand {
+  color: #ffffff; /* Color blanco para el logo */
+  font-weight: bold; /* Fuente en negrita para el logo */
+  font-size: 1.5rem; /* Tamaño de fuente del logo */
+  text-decoration: none; /* Eliminar subrayado en el logo */
+}
+
+.custom-brand:hover,
+.custom-brand:focus {
+  color: #b3d9ff; /* Color blanco suave al pasar el mouse o al enfocar */
+}
+
+.nav-link {
+  color: #f8f9fa; /* Color claro para los enlaces */
+  font-size: 1.1rem; /* Tamaño de fuente ligeramente mayor */
+  text-decoration: none; /* Eliminar subrayado en los enlaces */
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: #b3d9ff; /* Color blanco suave al pasar el mouse o al enfocar */
+  text-decoration: underline; /* Subrayar enlaces al pasar el mouse */
+}
+
+.navbar-toggler {
+  border-color: #ffffff; /* Color del borde del botón de menú */
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,..."); /* Icono del menú hamburguesa personalizado */
+}
+
+.nav-dropdown-item {
+  color: #003d5b; /* Color del texto del dropdown */
+}
+
+.nav-dropdown-item:hover {
+  background-color: #e6f7ff; /* Color de fondo del dropdown al pasar el mouse */
+  color: #003d5b; /* Color del texto del dropdown al pasar el mouse */
+}
