@@ -12,7 +12,7 @@ function Citas() {
   const [formData, setFormData] = useState({
     idUsr: null,
     fecha: null,
-    Observaciones: "",
+    Observaciones: " ",
     estado: "Pendiente",
     id_especialidades: null,
     id_consultorio: null,
@@ -42,11 +42,6 @@ function Citas() {
     }
   }, []);
 
-  // Maneja el cambio en el campo de observaciones
-  const handleObservacionesChange = (e) => {
-    setFormData({ ...formData, Observaciones: e.target.value });
-  };
-
   // Función para manejar el cambio en el calendario
   const handleCalendarChange = (e) => {
     setFormData({ ...formData, fecha: e.value });
@@ -64,7 +59,7 @@ function Citas() {
 
     try {
       // Validar datos antes de enviar la solicitud
-      if (!formData.fecha || !formData.Observaciones.trim()) {
+      if (!formData.fecha ) {
         setError("Por favor complete todos los campos.");
         return;
       }
@@ -120,24 +115,7 @@ function Citas() {
                   style={{ border: "1px solid #ced4da", borderRadius: "4px" }}
                 />
               </Form.Group>
-              <Form.Group controlId="floatingTextarea2" className="mb-4">
-                <FloatingLabel
-                  controlId="floatingTextarea2"
-                  label="Observaciones"
-                >
-                  <Form.Control
-                    as="textarea"
-                    placeholder="Leave a comment here"
-                    style={{
-                      height: "150px",
-                      borderRadius: "4px",
-                      borderColor: "#ced4da",
-                    }}
-                    value={formData.Observaciones}
-                    onChange={handleObservacionesChange}
-                  />
-                </FloatingLabel>
-              </Form.Group>
+
               <Form.Group controlId="formEspecialidad" className="mb-4">
                 <Form.Label style={{ color: "#333" }}>
                   Seleccione una Especialidad
