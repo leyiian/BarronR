@@ -21,26 +21,27 @@ function VerCitas() {
   const fetchCitas = async () => {
     const idUsr = localStorage.getItem("idUsuario");
     try {
-      const response = await instance.post(`/citas/paciente`,{
-        idUsr: idUsr
+      const response = await instance.post(`/citas/paciente`, {
+        idUsr: idUsr,
       });
-      console.log(response.data)
+      console.log(response.data);
       const citasWithData = await Promise.all(
         response.data.map(async (cita) => {
-          const pacienteResponse = await instance.post(
-            `/paciente`,
-            { id: cita.id_paciente }
-          );
-          const especialidadResponse = await instance.post(
-            `/especialidad`,
-            { id: cita.id_especialidades }
-          );
-          const doctorResponse = await instance.post(
-            `/doctor`,
-            { id: cita.id_doctor }
-          );
+          const pacienteResponse = await instance.post(`/paciente`, {
+            id: cita.id_paciente,
+          });
+          const especialidadResponse = await instance.post(`/especialidad`, {
+            id: cita.id_especialidades,
+          });
+          const doctorResponse = await instance.post(`/doctor`, {
+            id: cita.id_doctor,
+          });
           const doctor = doctorResponse.data;
-          const nombreDoc = `${doctor.nombre} ${doctor.apellido_paterno} ${doctor.apellido_materno}`
+          const nombreDoc =
+            doctor.nombre && doctor.apellido_paterno && doctor.apellido_materno
+              ? `${doctor.nombre} ${doctor.apellido_paterno} ${doctor.apellido_materno}`
+              : "No se ha asignado doctor";
+
           const paciente = pacienteResponse.data;
           const especialidad = especialidadResponse.data;
           const nombreCompleto = `${paciente.nombre} ${paciente.apPat} ${paciente.apMat}`;
@@ -55,7 +56,6 @@ function VerCitas() {
       setCitas(citasWithData);
     } catch (error) {
       console.error("Error al obtener las citas:", error);
-
     }
   };
 
@@ -99,12 +99,21 @@ function VerCitas() {
         padding: "2rem", // Espaciado alrededor del contenedor principal
       }}
     >
-      <Container className="aut-citas-container" style={{ padding: "1rem", marginTop: "0" }}>
+      <Container
+        className="aut-citas-container"
+        style={{ padding: "1rem", marginTop: "0" }}
+      >
         <h1 className="my-4" style={{ marginBottom: "1rem" }}>
           Ver Estado de mis Citas
         </h1>
 
-        <div className="card" style={{ borderRadius: "8px", boxShadow: "0 4px 8px rgba(0,0,0,0.1)" }}>
+        <div
+          className="card"
+          style={{
+            borderRadius: "8px",
+            boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+          }}
+        >
           <DataTable
             value={citas}
             editMode="row"
@@ -118,13 +127,38 @@ function VerCitas() {
             style={{ fontSize: "0.875rem" }} // Ajusta el tamaño de la fuente para una mejor legibilidad
           >
             <Column field="id" header="Id" style={{ width: "5%" }} />
-            <Column field="nombre_paciente" header="Nombre" style={{ width: "20%" }} />
+            <Column
+              field="nombre_paciente"
+              header="Nombre"
+              style={{ width: "20%" }}
+            />
             <Column field="fecha" header="Fecha" style={{ width: "15%" }} />
-            <Column field="Observaciones" header="Observaciones" style={{ width: "25%" }} />
-            <Column field="id_consultorio" header="Consultorio" style={{ width: "10%" }} />
-            <Column field="nombreDoc" header="Doctor" style={{ width: "15%" }} />
-            <Column field="especialidad" header="Especialidad" style={{ width: "10%" }} />
-            <Column field="estado" header="Estado" body={statusBodyTemplate} style={{ width: "15%" }} />
+            <Column
+              field="Observaciones"
+              header="Observaciones"
+              style={{ width: "25%" }}
+            />
+            <Column
+              field="id_consultorio"
+              header="Consultorio"
+              style={{ width: "10%" }}
+            />
+            <Column
+              field="nombreDoc"
+              header="Doctor"
+              style={{ width: "15%" }}
+            />
+            <Column
+              field="especialidad"
+              header="Especialidad"
+              style={{ width: "10%" }}
+            />
+            <Column
+              field="estado"
+              header="Estado"
+              body={statusBodyTemplate}
+              style={{ width: "15%" }}
+            />
           </DataTable>
         </div>
       </Container>
