@@ -19,8 +19,11 @@ function VerCitas() {
   }, []);
 
   const fetchCitas = async () => {
+    const idUsr = localStorage.getItem("idUsuario");
     try {
-      const response = await instance.get(`/citas`);
+      const response = await instance.post(`/citas/paciente`,{
+        idUsr: idUsr
+      });
       console.log(response.data)
       const citasWithData = await Promise.all(
         response.data.map(async (cita) => {
