@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    background: url('/public/doc2.jpg') no-repeat center center fixed;
+    background-size: cover;
+  }
+  
+  .registro-background {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center;
+  }
+  
+  .registro-container {
+    width: 100%;
+    max-width: 800px; /* Aumenta el ancho del formulario */
+    padding: 0 1rem; /* Añade un pequeño padding a los lados */
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+  }
+  
+  .registro-card {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.9s, box-shadow 0.3s;
+    margin: 0 auto; /* Centra horizontalmente */
+    left: 10%; /* Mueve el formulario más a la derecha */
+    top: 1%; /* Mueve el formulario más abajo */
+      
+  }
+  
+  .registro-card:hover {
+    transform: perspective(1000px) rotateY(12deg) scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .registro-card-body {
+    padding: 2rem; /* Ajusta el padding para más espacio interno */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Asegura que los elementos se distribuyan uniformemente */
+    height: 100%; /* Asegura que el contenido ocupe el 100% de la altura del card */
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 1.5rem; /* Ajusta el margen inferior para un mejor espaciado */
+    color: #003d5b;
+    font-size: 1.5rem; /* Tamaño del texto del título */
+  }
+  
+  .registro-input {
+    border-radius: 8px;
+    border-color: #d6d6d6;
+    padding: 0.75rem; /* Ajusta el padding interno */
+    font-size: 1rem; /* Tamaño del texto */
+    margin-bottom: 1rem; /* Espacio entre campos de formulario */
+  }
+  
+  .registro-button {
+    border-radius: 8px;
+    background-color: #003d5b;
+    border-color: #003d5b;
+    padding: 0.75rem 1.5rem; /* Ajusta el padding interno */
+    font-size: 1.1rem; /* Tamaño del texto del botón */
+    margin-bottom: 1rem; /* Espacio entre el botón y otros elementos */
+  }
+  
+  .btn-outline-secondary {
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem; /* Ajusta el padding interno */
+    font-size: 1.1rem; /* Tamaño del texto del botón */
+  }
+  
+  .alert {
+    border-radius: 8px;
+    font-size: 1rem; /* Tamaño del texto del mensaje de alerta */
+  }
+  

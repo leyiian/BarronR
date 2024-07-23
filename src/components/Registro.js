@@ -3,6 +3,7 @@ import { Form, Button, Container, Card, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Config from "../Config/Config";
+import "../css/Registro.css";
 
 function Registro() {
   const [formData, setFormData] = useState({
@@ -50,27 +51,14 @@ function Registro() {
 
   return (
     <div
-      style={{
-        minHeight: "100vh",
-        backgroundColor: "#e9f5f9",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+      className="registro-background" // Clase para el fondo
     >
-      <Container
-        className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: "100vh", backgroundColor: "#e9f5f9" }} // Color de fondo suave
-      >
-        <Card
-          className="shadow-lg border-0"
-          style={{ width: "100%", maxWidth: "500px" }}
-        >
+      <Container className="d-flex justify-content-center align-items-center registro-container">
+        <Card className="registro-card">
           <Card.Body>
             <h2 className="text-center mb-4" style={{ color: "#003d5b" }}>
               Registro de Paciente
-            </h2>{" "}
-            {/* Color profesional */}
+            </h2>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="formNombre">
@@ -82,7 +70,7 @@ function Registro() {
                   value={formData.nombre}
                   onChange={handleChange}
                   required
-                  style={{ borderRadius: "8px", borderColor: "#d6d6d6" }} // Borde suave
+                  className="registro-input"
                 />
               </Form.Group>
               <div className="mb-3 d-flex">
@@ -95,7 +83,7 @@ function Registro() {
                     value={formData.apPat}
                     onChange={handleChange}
                     required
-                    style={{ borderRadius: "8px", borderColor: "#d6d6d6" }} // Borde suave
+                    className="registro-input"
                   />
                 </div>
                 <div className="flex-grow-1">
@@ -107,7 +95,7 @@ function Registro() {
                     value={formData.apMat}
                     onChange={handleChange}
                     required
-                    style={{ borderRadius: "8px", borderColor: "#d6d6d6" }} // Borde suave
+                    className="registro-input"
                   />
                 </div>
               </div>
@@ -120,7 +108,7 @@ function Registro() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  style={{ borderRadius: "8px", borderColor: "#d6d6d6" }} // Borde suave
+                  className="registro-input"
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formPassword">
@@ -132,7 +120,7 @@ function Registro() {
                   value={formData.password}
                   onChange={handleChange}
                   required
-                  style={{ borderRadius: "8px", borderColor: "#d6d6d6" }} // Borde suave
+                  className="registro-input"
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formTelefono">
@@ -144,7 +132,7 @@ function Registro() {
                   value={formData.telefono}
                   onChange={handleChange}
                   required
-                  style={{ borderRadius: "8px", borderColor: "#d6d6d6" }} // Borde suave
+                  className="registro-input"
                 />
               </Form.Group>
               <div className="d-grid gap-2">
@@ -152,18 +140,14 @@ function Registro() {
                   variant="primary"
                   type="submit"
                   disabled={isLoading}
-                  style={{
-                    borderRadius: "8px",
-                    backgroundColor: "#003d5b",
-                    borderColor: "#003d5b",
-                  }} // Color de botón profesional
+                  className="registro-button"
                 >
                   {isLoading ? "Registrando..." : "Registrar"}
                 </Button>
                 <Button
                   variant="outline-secondary"
                   onClick={() => navigate("/")}
-                  style={{ borderRadius: "8px" }} // Bordes redondeados para el botón de iniciar sesión
+                  className="registro-button"
                 >
                   Iniciar Sesión
                 </Button>

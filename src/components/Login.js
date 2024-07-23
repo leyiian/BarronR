@@ -1,7 +1,8 @@
-import axios from "axios";
-import { useState } from "react";
+import "../css/Login.css";
+import React, { useState } from "react";
 import { Form, Button, Container, Card, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Config from "../Config/Config";
 
 function Login() {
@@ -58,28 +59,27 @@ function Login() {
     <div
       style={{
         minHeight: "100vh",
-        backgroundColor: '#e9f5f9',
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "center", // Centra horizontalmente
         alignItems: "center",
       }}
     >
       <Container
         className="d-flex justify-content-center align-items-center"
-        style={{ width: "100%", maxWidth: "450px" }}
+        style={{ width: "100%", maxWidth: "600px" }} // Aumenta el maxWidth
       >
         <Card
           className="shadow-lg border-0"
           style={{
             width: "100%",
-            borderRadius: "12px", // Bordes redondeados del card
+            borderRadius: "12px",
+            padding: "2rem", // Agrega padding para más espacio interno
           }}
         >
           <Card.Body>
             <h2 className="text-center mb-4" style={{ color: "#003d5b" }}>
               Iniciar Sesión
-            </h2>{" "}
-            {/* Color profesional */}
+            </h2>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={loginValidate}>
               <Form.Group className="mb-3" controlId="formEmail">
@@ -94,7 +94,7 @@ function Login() {
                   style={{
                     borderRadius: "8px",
                     borderColor: "#d6d6d6",
-                    boxShadow: "none", // Elimina sombra del borde
+                    boxShadow: "none",
                   }}
                 />
               </Form.Group>
@@ -110,7 +110,7 @@ function Login() {
                   style={{
                     borderRadius: "8px",
                     borderColor: "#d6d6d6",
-                    boxShadow: "none", // Elimina sombra del borde
+                    boxShadow: "none",
                   }}
                 />
               </Form.Group>
@@ -123,14 +123,14 @@ function Login() {
                     borderRadius: "8px",
                     backgroundColor: "#003d5b",
                     borderColor: "#003d5b",
-                  }} // Color de botón profesional
+                  }}
                 >
                   {isLoading ? "Iniciando sesión..." : "Iniciar Sesión"}
                 </Button>
                 <Button
                   variant="outline-secondary"
                   onClick={() => navigate("/registro")}
-                  style={{ borderRadius: "8px" }} // Bordes redondeados para el botón de registro
+                  style={{ borderRadius: "8px" }}
                 >
                   Registrarse
                 </Button>
