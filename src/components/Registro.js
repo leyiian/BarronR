@@ -3,7 +3,7 @@ import { Form, Button, Container, Card, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Config from "../Config/Config";
-import "../css/Registro.css";
+import styles from "../css/Registro.css";
 
 function Registro() {
   const [formData, setFormData] = useState({
@@ -50,13 +50,11 @@ function Registro() {
   };
 
   return (
-    <div
-      className="registro-background" // Clase para el fondo
-    >
-      <Container className="d-flex justify-content-center align-items-center registro-container">
-        <Card className="registro-card">
-          <Card.Body>
-            <h2 className="text-center mb-4" style={{ color: "#003d5b" }}>
+    <div className={styles.registroBackground}>
+      <Container className={`d-flex justify-content-center align-items-center ${styles.registroContainer}`}>
+        <Card className={styles.registroCard}>
+          <Card.Body className={styles.registroCardBody}>
+            <h2 className={styles.registroTitle}>
               Registro de Paciente
             </h2>
             {error && <Alert variant="danger">{error}</Alert>}
@@ -70,7 +68,7 @@ function Registro() {
                   value={formData.nombre}
                   onChange={handleChange}
                   required
-                  className="registro-input"
+                  className={styles.registroInput}
                 />
               </Form.Group>
               <div className="mb-3 d-flex">
@@ -83,7 +81,7 @@ function Registro() {
                     value={formData.apPat}
                     onChange={handleChange}
                     required
-                    className="registro-input"
+                    className={styles.registroInput}
                   />
                 </div>
                 <div className="flex-grow-1">
@@ -95,7 +93,7 @@ function Registro() {
                     value={formData.apMat}
                     onChange={handleChange}
                     required
-                    className="registro-input"
+                    className={styles.registroInput}
                   />
                 </div>
               </div>
@@ -108,7 +106,7 @@ function Registro() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="registro-input"
+                  className={styles.registroInput}
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formPassword">
@@ -120,7 +118,7 @@ function Registro() {
                   value={formData.password}
                   onChange={handleChange}
                   required
-                  className="registro-input"
+                  className={styles.registroInput}
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formTelefono">
@@ -132,7 +130,7 @@ function Registro() {
                   value={formData.telefono}
                   onChange={handleChange}
                   required
-                  className="registro-input"
+                  className={styles.registroInput}
                 />
               </Form.Group>
               <div className="d-grid gap-2">
@@ -140,14 +138,14 @@ function Registro() {
                   variant="primary"
                   type="submit"
                   disabled={isLoading}
-                  className="registro-button"
+                  className={styles.registroButton}
                 >
                   {isLoading ? "Registrando..." : "Registrar"}
                 </Button>
                 <Button
                   variant="outline-secondary"
                   onClick={() => navigate("/")}
-                  className="registro-button"
+                  className={styles.registroOutlineButton}
                 >
                   Iniciar Sesión
                 </Button>

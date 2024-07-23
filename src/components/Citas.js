@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Button, Alert, Form } from "react-bootstrap";
 import { Calendar } from "primereact/calendar";
-import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { useNavigate } from "react-router-dom";
 import instance from "../Config/AxiosConfig";
+import styles from "../css/Citas.css";
 
 function Citas() {
   const navigate = useNavigate();
@@ -19,7 +19,6 @@ function Citas() {
     id_doctor: null,
   });
 
-  // Manejo del id del localStorage
   useEffect(() => {
     const obtenerEspecialidades = async () => {
       try {
@@ -42,24 +41,20 @@ function Citas() {
     }
   }, []);
 
-  // Función para manejar el cambio en el calendario
   const handleCalendarChange = (e) => {
     setFormData({ ...formData, fecha: e.value });
   };
 
-  // Función para manejar el cambio en el select de especialidades
   const handleEspecialidadChange = (e) => {
     setFormData({ ...formData, id_especialidades: e.target.value });
   };
 
-  // Función para guardar la cita
   const guardarCita = async (e) => {
     e.preventDefault();
     setError("");
 
     try {
-      // Validar datos antes de enviar la solicitud
-      if (!formData.fecha ) {
+      if (!formData.fecha) {
         setError("Por favor complete todos los campos.");
         return;
       }
@@ -77,31 +72,17 @@ function Citas() {
   };
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        backgroundColor: "#e9f5f9",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Container
-        className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: "100vh" }}
-      >
-        <Row
-          className="shadow-lg p-4 mb-5 bg-white rounded w-100"
-          style={{ maxWidth: "600px" }}
-        >
+    <div className={styles.citasContainer}>
+      <Container className={styles.citasContainer}>
+        <Row className={styles.citasRow}>
           <Col md={12} className="mx-auto">
-            <h2 className="text-center mb-4" style={{ color: "#0056b3" }}>
+            <h2 className={`text-center ${styles.citasHeading}`}>
               Registrar Cita
             </h2>
             {error && <Alert variant="danger">{error}</Alert>}
-            <Form onSubmit={guardarCita}>
+            <Form onSubmit={guardarCita} className={styles.citasForm}>
               <Form.Group controlId="formFecha" className="mb-4">
-                <Form.Label className="d-block mb-2" style={{ color: "#333" }}>
+                <Form.Label className={`d-block ${styles.citasLabel}`}>
                   Seleccione la Fecha y Hora
                 </Form.Label>
                 <Calendar
@@ -111,20 +92,19 @@ function Citas() {
                   showTime
                   hourFormat="24"
                   showIcon
-                  className="w-100"
-                  style={{ border: "1px solid #ced4da", borderRadius: "4px" }}
+                  className={styles.citasCalendar}
                 />
               </Form.Group>
 
               <Form.Group controlId="formEspecialidad" className="mb-4">
-                <Form.Label style={{ color: "#333" }}>
+                <Form.Label className={styles.citasLabel}>
                   Seleccione una Especialidad
                 </Form.Label>
                 <Form.Select
                   aria-label="Seleccione una especialidad"
                   value={formData.id_especialidades}
                   onChange={handleEspecialidadChange}
-                  style={{ border: "1px solid #ced4da", borderRadius: "4px" }}
+                  className={styles.citasSelect}
                 >
                   <option value="">Seleccione una especialidad</option>
                   {especialidades.map((especialidad) => (
@@ -135,12 +115,17 @@ function Citas() {
                 </Form.Select>
               </Form.Group>
               <div className="d-grid gap-2">
-                <Button variant="outline-primary" type="submit">
+                <Button
+                  variant="outline-primary"
+                  type="submit"
+                  className={styles.citasButtonPrimary}
+                >
                   Guardar Cita
                 </Button>
                 <Button
                   variant="outline-danger"
                   onClick={() => navigate("/home")}
+                  className={styles.citasButtonDanger}
                 >
                   Cancelar
                 </Button>

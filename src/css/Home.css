@@ -1,0 +1,22 @@
+.homeContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f8f9fa; /* Ajusta el color de fondo según tus necesidades */
+}
+
+.alertContainer {
+  text-align: center;
+  padding: 2rem; /* Ajusta el padding según tus necesidades */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ajusta el shadow según tus necesidades */
+  border-radius: 8px; /* Ajusta el border-radius según tus necesidades */
+}
+
+.alertTitle {
+  margin-bottom: 1rem; /* Ajusta el margin-bottom según tus necesidades */
+}
+
+.alertText {
+  margin-bottom: 0; /* Asegura que no haya margen inferior */
+}

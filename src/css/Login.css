@@ -1,64 +1,21 @@
-body {
-    background: url('/public/doc2.jpg') no-repeat center center fixed;
-    background-size: cover;
-    margin: 0;
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center;
-    min-height: 100vh;
-  }
-  
-  .card {
-    width: 80%; /* Ajusta este valor según el tamaño deseado del formulario */
-    max-width: 600px;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.8s, box-shadow 0.3s;
-    position: absolute; /* Usa position: absolute para ajustar left y top */
-    left: 10%; /* Ajusta este valor para mover el formulario horizontalmente */
-    top: 10%; /* Ajusta este valor para mover el formulario verticalmente */
-  }
-  
-  .card:hover {
-    transform: perspective(1000px) rotateY(12deg) scale(1.05);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  
-  .card-body {
-    padding: 2.5rem;
-  }
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #0670a5;
-    font-size: 1.5rem;
-  }
-  
-  .form-control {
-    border-radius: 8px;
-    border-color: #d6d6d6;
-    box-shadow: none;
-    padding: 1rem;
-    font-size: 1rem;
-  }
-  
-  .btn-primary {
-    border-radius: 8px;
-    background-color: #003d5b;
-    border-color: #003d5b;
-    padding: 0.75rem 1.5rem;
-    font-size: 1.1rem;
-  }
-  
-  .btn-outline-secondary {
-    border-radius: 8px;
-    padding: 0.75rem 1.5rem;
-    font-size: 1.1rem;
-  }
-  
-  .alert {
-    border-radius: 8px;
-    font-size: 1rem;
-  }
-  
+.login-container {
+  background: url("/public/doc2.jpg") no-repeat center center fixed;
+  background-size: cover;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.login-form {
+  width: 80%;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.8s, box-shadow 0.3s;
+  position: absolute;
+  left: 10%;
+  top: 10%;
+}
+
