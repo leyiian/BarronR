@@ -4,19 +4,31 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: url('/public/doc2.jpg'); /* Imagen de prueba */
+  background-size: cover;
+  background-position: center;
 }
 
 .citasContainer {
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
 }
 
 .citasRow {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
   padding: 2rem;
-  background-color: #ffffff;
-  border-radius: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.9); 
+  border-radius: 1rem; 
   max-width: 600px;
   width: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.citasRow:hover {
+  transform: scale(1.05);
 }
 
 .citasCol {
@@ -27,24 +39,56 @@
   color: #0056b3;
   text-align: center;
   margin-bottom: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .citasLabel {
   color: #333333;
+  font-weight: bold;
 }
 
 .citasCalendar {
   width: 100%;
   border: 1px solid #ced4da;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem; /* Bordes redondeados */
+  padding: 0.5rem;
 }
 
 .citasSelect {
   width: 100%;
   border: 1px solid #ced4da;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem; /* Bordes redondeados */
+  padding: 0.5rem;
 }
 
-.citasButton {
-  margin-top: 1rem;
+.citasButtonPrimary {
+  border-radius: 0.5rem; /* Bordes redondeados */
+  border: 1px solid #007bff;
+  color: #007bff;
+  background-color: transparent;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.citasButtonPrimary:hover {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.citasButtonDanger {
+  border-radius: 0.5rem; /* Bordes redondeados */
+  border: 1px solid #dc3545;
+  color: #dc3545;
+  background-color: transparent;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.citasButtonDanger:hover {
+  background-color: #dc3545;
+  color: #ffffff;
 }

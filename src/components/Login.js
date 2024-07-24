@@ -56,26 +56,12 @@ function Login() {
   };
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        display: "flex",
-        justifyContent: "center", // Centra horizontalmente
-        alignItems: "center",
-      }}
-    >
+    <div className="login-container">
       <Container
         className="d-flex justify-content-center align-items-center"
-        style={{ width: "100%", maxWidth: "600px" }} // Aumenta el maxWidth
+        style={{ width: "100%", maxWidth: "600px" }}
       >
-        <Card
-          className="shadow-lg border-0"
-          style={{
-            width: "100%",
-            borderRadius: "12px",
-            padding: "2rem", // Agrega padding para más espacio interno
-          }}
-        >
+        <Card className="login-form shadow-lg border-0">
           <Card.Body>
             <h2 className="text-center mb-4" style={{ color: "#003d5b" }}>
               Iniciar Sesión

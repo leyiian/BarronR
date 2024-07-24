@@ -3,7 +3,7 @@ import { Container, Row, Col, Button, Alert, Form } from "react-bootstrap";
 import { Calendar } from "primereact/calendar";
 import { useNavigate } from "react-router-dom";
 import instance from "../Config/AxiosConfig";
-import styles from "../css/Citas.css";
+import "../css/Citas.css"; // Importación del CSS
 
 function Citas() {
   const navigate = useNavigate();
@@ -72,17 +72,17 @@ function Citas() {
   };
 
   return (
-    <div className={styles.citasContainer}>
-      <Container className={styles.citasContainer}>
-        <Row className={styles.citasRow}>
-          <Col md={12} className="mx-auto">
-            <h2 className={`text-center ${styles.citasHeading}`}>
+    <div className="citasBackground">
+      <Container className="citasContainer">
+        <Row className="citasRow">
+          <Col md={12} className="citasCol">
+            <h2 className="text-center citasTitle">
               Registrar Cita
             </h2>
             {error && <Alert variant="danger">{error}</Alert>}
-            <Form onSubmit={guardarCita} className={styles.citasForm}>
+            <Form onSubmit={guardarCita} className="citasForm">
               <Form.Group controlId="formFecha" className="mb-4">
-                <Form.Label className={`d-block ${styles.citasLabel}`}>
+                <Form.Label className="d-block citasLabel">
                   Seleccione la Fecha y Hora
                 </Form.Label>
                 <Calendar
@@ -92,19 +92,19 @@ function Citas() {
                   showTime
                   hourFormat="24"
                   showIcon
-                  className={styles.citasCalendar}
+                  className="citasCalendar"
                 />
               </Form.Group>
 
               <Form.Group controlId="formEspecialidad" className="mb-4">
-                <Form.Label className={styles.citasLabel}>
+                <Form.Label className="citasLabel">
                   Seleccione una Especialidad
                 </Form.Label>
                 <Form.Select
                   aria-label="Seleccione una especialidad"
                   value={formData.id_especialidades}
                   onChange={handleEspecialidadChange}
-                  className={styles.citasSelect}
+                  className="citasSelect"
                 >
                   <option value="">Seleccione una especialidad</option>
                   {especialidades.map((especialidad) => (
@@ -118,14 +118,14 @@ function Citas() {
                 <Button
                   variant="outline-primary"
                   type="submit"
-                  className={styles.citasButtonPrimary}
+                  className="citasButtonPrimary"
                 >
                   Guardar Cita
                 </Button>
                 <Button
                   variant="outline-danger"
                   onClick={() => navigate("/home")}
-                  className={styles.citasButtonDanger}
+                  className="citasButtonDanger"
                 >
                   Cancelar
                 </Button>

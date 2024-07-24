@@ -1,21 +1,91 @@
+/* Estilos para el contenedor del formulario de inicio de sesión */
 .login-container {
-  background: url("/public/doc2.jpg") no-repeat center center fixed;
+  background: url("/public/doc13.jpg") no-repeat center center fixed;
   background-size: cover;
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  font-family: 'Arial', sans-serif; 
 }
 
+/* Estilos para el formulario */
 .login-form {
-  width: 80%;
-  max-width: 600px;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.8s, box-shadow 0.3s;
-  position: absolute;
-  left: 10%;
-  top: 10%;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.7s, box-shadow 0.7s, width 0.7s, padding 0.7s;
+  position: relative; /* Cambiado de absolute a relative para manejar mejor el posicionamiento */
+  left: -53%;
+  top: 20%;
+  padding: 2rem; /* Espacio interno */
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con transparencia */
+  text-align: center; 
 }
 
+/* Efecto de expansión y sombreado 3D al pasar el cursor */
+.login-form:hover {
+  transform: scale(1.03) perspective(1000px) rotateY(17deg);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25); /* Sombra adicional */
+  width: 95%; /* Aumenta el ancho */
+  padding: 2.5rem; /* Añade más espacio interno */
+}
+
+/* Efecto de sombreado 3D adicional al hacer clic */
+.login-form:active {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); /* Sombra más intensa al hacer clic */
+}
+
+/* Estilos para los labels y campos de formulario */
+.login-form .form-label {
+  font-family: 'Roboto', sans-serif; /* Fuente para labels */
+  font-weight: bold;
+  color: #333;
+}
+
+.login-form .form-control {
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.login-form .form-control:focus {
+  border-color: #003d5b;
+  box-shadow: 0 0 0 0.2rem rgba(0, 61, 91, 0.1); /* Sombra al enfocar */
+}
+
+/* Estilos para los botones */
+.login-form .btn-primary {
+  background-color: #003d5b;
+  border-color: #003d5b;
+  border-radius: 8px;
+  font-size: 1rem;
+  padding: 0.75rem;
+  font-weight: bold;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.login-form .btn-primary:hover {
+  background-color: #002a44;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra adicional */
+}
+
+.login-form .btn-outline-secondary {
+  border-radius: 8px;
+  border-color: #003d5b;
+  color: #003d5b;
+  font-size: 1rem;
+  padding: 0.75rem;
+  font-weight: bold;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.login-form .btn-outline-secondary:hover {
+  background-color: #003d5b;
+  color: #fff;
+  border-color: #003d5b;
+}

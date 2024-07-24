@@ -1,77 +1,108 @@
-body {
-  margin: 0;
-  background: url('/public/doc2.jpg') no-repeat center center fixed;
+/* Estilos para el contenedor del formulario de registro */
+.registro-container {
+  background: url("/public/doc2.jpg") no-repeat center center fixed;
   background-size: cover;
-}
-
-.registroBackground {
-  min-height: 100vh;
+  margin: 0;
   display: flex;
-  justify-content: center; /* Centra horizontalmente */
+  justify-content: center;
   align-items: center;
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif; 
 }
 
-.registroContainer {
-  width: 100%;
-  max-width: 800px; /* Aumenta el ancho del formulario */
-  padding: 0 1rem; /* Añade un pequeño padding a los lados */
-  box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+/* Estilos para el formulario */
+.registro-form {
+  width: 90%;
+  max-width: 600px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.9s, box-shadow 0.9s, width 0.9s, padding 0.9s;
+  position: relative; 
+  left: -48%;
+  top: 20%;
+  padding: 2rem; 
+  background-color: rgba(255, 255, 255, 0.9); 
+  text-align: center; 
 }
 
-.registroCard {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.9s, box-shadow 0.3s;
-  margin: 0 auto; /* Centra horizontalmente */
-  left: 10%; /* Mueve el formulario más a la derecha */
-  top: 1%; /* Mueve el formulario más abajo */
+/* Efecto de expansión y sombreado 3D al pasar el cursor */
+.registro-form:hover {
+  transform: scale(1.03) perspective(1000px) rotateY(14deg);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25); 
+  width: 95%; 
+  padding: 2.5rem; 
 }
 
-.registroCard:hover {
-  transform: perspective(1000px) rotateY(12deg) scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+/* Efecto de sombreado 3D adicional al hacer clic */
+.registro-form:active {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); 
 }
 
-.registroCardBody {
-  padding: 2rem; /* Ajusta el padding para más espacio interno */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between; /* Asegura que los elementos se distribuyan uniformemente */
-  height: 100%; /* Asegura que el contenido ocupe el 100% de la altura del card */
+/* Estilos para los labels y campos de formulario */
+.registro-form .form-label {
+  font-family: 'Roboto', sans-serif; 
+  font-weight: bold;
+  color: #333;
 }
 
-.registroTitle {
-  text-align: center;
-  margin-bottom: 1.5rem; /* Ajusta el margen inferior para un mejor espaciado */
-  color: #003d5b;
-  font-size: 1.5rem; /* Tamaño del texto del título */
-}
-
-.registroInput {
+.registro-form .form-control {
   border-radius: 8px;
-  border-color: #d6d6d6;
-  padding: 0.75rem; /* Ajusta el padding interno */
-  font-size: 1rem; /* Tamaño del texto */
-  margin-bottom: 1rem; /* Espacio entre campos de formulario */
+  border: 1px solid #ddd;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  transition: border-color 0.3s;
 }
 
-.registroButton {
-  border-radius: 8px;
+.registro-form .form-control:focus {
+  border-color: #003d5b;
+  box-shadow: 0 0 0 0.2rem rgba(0, 61, 91, 0.1); 
+}
+
+/* Estilos para los botones */
+.registro-form .btn-primary {
   background-color: #003d5b;
   border-color: #003d5b;
-  padding: 0.75rem 1.5rem; /* Ajusta el padding interno */
-  font-size: 1.1rem; /* Tamaño del texto del botón */
-  margin-bottom: 1rem; /* Espacio entre el botón y otros elementos */
-}
-
-.registroOutlineButton {
   border-radius: 8px;
-  padding: 0.75rem 1.5rem; /* Ajusta el padding interno */
-  font-size: 1.1rem; /* Tamaño del texto del botón */
+  font-size: 1rem;
+  padding: 0.75rem;
+  font-weight: bold;
+  transition: background-color 0.3s, box-shadow 0.3s;
 }
 
+.registro-form .btn-primary:hover {
+  background-color: #002a44;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.registro-form .btn-outline-secondary {
+  border-radius: 8px;
+  border-color: #003d5b;
+  color: #003d5b;
+  font-size: 1rem;
+  padding: 0.75rem;
+  font-weight: bold;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.registro-form .btn-outline-secondary:hover {
+  background-color: #003d5b;
+  color: #fff;
+  border-color: #003d5b;
+}
+
+/* Estilos para las alertas */
 .alert {
   border-radius: 8px;
-  font-size: 1rem; /* Tamaño del texto del mensaje de alerta */
+  font-size: 1rem; 
+}
+
+/* Ajustes adicionales para mejorar la experiencia en dispositivos móviles */
+@media (max-width: 768px) {
+  .registro-form {
+    left: 0;
+    top: 0;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: none;
+  }
 }

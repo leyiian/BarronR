@@ -1,14 +1,15 @@
-import { Column } from "primereact/column";
-import { DataTable } from "primereact/datatable";
 import React, { useEffect, useState } from "react";
 import { Container, Form } from "react-bootstrap";
+import { Column } from "primereact/column";
+import { DataTable } from "primereact/datatable";
 import { Tag } from "primereact/tag";
 import instance from "../Config/AxiosConfig";
-import styles from "../css/VerCitas.css";
+import "../css/VerCitas.css"; // Asegúrate de que la ruta sea correcta
 
 function VerCitas() {
   const [citas, setCitas] = useState([]);
   const [globalFilter, setGlobalFilter] = useState(""); // Estado para el filtro global
+
   const onInputChange = (e) => {
     setGlobalFilter(e.target.value); // Actualizamos el filtro global
   };
@@ -70,6 +71,7 @@ function VerCitas() {
         return null;
     }
   };
+
   const statusBodyTemplate = (rowData) => {
     return (
       <Tag value={rowData.estado} severity={getSeverity(rowData.estado)} />
@@ -77,7 +79,7 @@ function VerCitas() {
   };
 
   const filterHeader = (
-    <div className={styles.tableFilter}>
+    <div className="tableFilter">
       <Form.Control
         type="text"
         placeholder="Buscar"
@@ -88,13 +90,13 @@ function VerCitas() {
   );
 
   return (
-    <div className={styles.verCitasBackground}>
-      <Container className={styles.verCitasContainer}>
-        <h1 className={`my-4 ${styles.verCitasTitle}`}>
+    <div className="verCitasBackground">
+      <Container className="verCitasContainer">
+        <h1 className="my-4 verCitasTitle">
           Ver Estado de mis Citas
         </h1>
 
-        <div className={`card ${styles.verCitasCard}`}>
+        <div className="card verCitasCard">
           <DataTable
             value={citas}
             editMode="row"
@@ -105,7 +107,7 @@ function VerCitas() {
             emptyMessage="No se encontraron citas."
             header={filterHeader} // Componente de filtro global
             tableStyle={{ minWidth: "100%" }} // Asegúrate de que la tabla use el 100% del ancho del contenedor
-            className={styles.verCitasTable}
+            className="verCitasTable"
           >
             <Column field="id" header="Id" style={{ width: "5%" }} />
             <Column

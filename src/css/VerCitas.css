@@ -1,31 +1,79 @@
+/* Estilo para el fondo de la vista */
 .verCitasBackground {
-    min-height: 100vh;
-    background-color: #e9f5f9;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-  }
-  
-  .verCitasContainer {
-    padding: 1rem;
-    margin-top: 0;
-  }
-  
-  .verCitasTitle {
-    margin-bottom: 1rem;
-  }
-  
-  .verCitasCard {
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .verCitasTable {
-    min-width: 100%;
-    font-size: 0.875rem;
-  }
-  
-  .tableFilter {
-    max-width: 300px;
-  }
-  
+  background-image: url('/public/doc10.jpg'); /* Ruta de la imagen de fondo */
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilo para el contenedor principal de la vista */
+.verCitasContainer {
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco con transparencia */
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 1200px; /* Máximo ancho para el contenedor */
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.verCitasContainer:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo para el título */
+.verCitasTitle {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 2rem; /* Tamaño de fuente del título */
+  font-weight: 600;
+}
+
+/* Estilo para la tarjeta que contiene la tabla */
+.verCitasCard {
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco con transparencia */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para el campo de filtro de la tabla */
+.tableFilter {
+  margin-bottom: 20px;
+}
+
+/* Estilo para la tabla de datos */
+.verCitasTable .p-datatable {
+  border: none;
+}
+
+.verCitasTable .p-datatable .p-datatable-thead > tr > th {
+  background-color: #007bff; /* Color de fondo de los encabezados */
+  color: #ffffff; /* Color del texto de los encabezados */
+  font-weight: 600;
+}
+
+.verCitasTable .p-datatable .p-datatable-tbody > tr > td {
+  color: #555555; /* Color del texto de las celdas */
+}
+
+.verCitasTable .p-datatable .p-datatable-tbody > tr:nth-child(even) {
+  background-color: #f8f9fa; /* Color de fondo de las filas alternas */
+}
+
+.verCitasTable .p-datatable .p-datatable-tbody > tr:hover {
+  background-color: #e0f7fa; /* Color de fondo de las filas al pasar el cursor */
+}
+
+/* Estilo para las etiquetas de estado */
+.p-tag {
+  border-radius: 20px;
+  font-size: 0.875rem; /* Tamaño de fuente de las etiquetas */
+}
