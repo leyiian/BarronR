@@ -11,7 +11,7 @@ body, html {
   background-color: rgba(42, 62, 80, 0.9); /* Azul oscuro profesional con transparencia */
   border-bottom: 1px solid rgba(44, 62, 80, 0.8); /* Línea inferior con transparencia */
   padding: 8px 10px; /* Reducción del espaciado interno para una barra más delgada */
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Sombra más sutil para una apariencia más ligera */
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1); /* Sombra más sutil para una apariencia más ligera */
   position: fixed; /* Fijar la barra de navegación en la parte superior */
   width: 100%; /* Asegurar que la barra de navegación ocupe todo el ancho */
   z-index: 1000; /* Asegurar que la barra de navegación esté por encima de otros elementos */
@@ -50,37 +50,42 @@ body, html {
 
 /* Estilo para el botón de menú */
 .navbar-toggler {
-  border-color: rgba(255, 255, 255, 0.8); /* Color del borde del botón de menú con transparencia */
-  border-radius: 8px; /* Bordes redondeados más pronunciados para el botón */
-  padding: 5px 10px; /* Ajuste del espaciado interno del botón */
-  transition: border-color 0.3s ease; /* Transición suave */
+  border: none; /* Sin borde para el botón */
+  background: transparent; /* Fondo transparente */
+  padding: 0; /* Sin padding */
+  cursor: pointer; /* Cursor de mano al pasar el mouse */
 }
 
-.navbar-toggler:hover {
-  border-color: rgba(179, 217, 255, 0.8); /* Color del borde del botón al pasar el mouse con transparencia */
+.navbar-toggler:focus {
+  outline: none; /* Sin outline al enfocar */
 }
 
 .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,..."); /* Icono del menú hamburguesa personalizado */
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.9); /* Color blanco con transparencia */
+  position: relative;
+  transition: background-color 0.3s ease; /* Transición suave */
 }
 
-/* Estilo para los ítems del dropdown de navegación */
-.nav-dropdown-item {
-  color: rgba(21, 46, 189, 0.9); /* Color del texto del dropdown con transparencia */
-  font-family: 'Arial', sans-serif; /* Fuente para los ítems del dropdown */
-  transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.9); /* Color blanco con transparencia */
+  position: absolute;
+  transition: transform 0.3s ease, background-color 0.3s ease; /* Transición suave */
 }
 
-.nav-dropdown-item:hover {
-  background-color: rgba(230, 247, 255, 0.9); /* Color de fondo del dropdown al pasar el mouse con transparencia */
-  color: rgba(0, 61, 91, 0.9); /* Color del texto del dropdown al pasar el mouse con transparencia */
+.navbar-toggler-icon::before {
+  top: -8px;
 }
 
-/* Estilo para los elementos activos */
-.nav-link.active {
-  color: rgba(179, 217, 255, 0.9); /* Color para el enlace activo con transparencia */
-  font-weight: bold; /* Fuente en negrita para el enlace activo */
-  text-decoration: underline; /* Subrayar enlace activo */
+.navbar-toggler-icon::after {
+  top: 8px;
 }
 
 /* Ajuste para la barra de navegación en pantallas pequeñas */
