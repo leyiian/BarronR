@@ -1,13 +1,13 @@
 /* Estilos para el contenedor del formulario de registro */
 .registro-container {
-  background: url("/public/doc2.jpg") no-repeat center center fixed;
+  background: url("/public/doc21.jpg") no-repeat center center fixed;
   background-size: cover;
   margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  font-family: 'Arial', sans-serif; 
+  font-family: 'Arial', sans-serif;
 }
 
 /* Estilos para el formulario */
@@ -16,31 +16,32 @@
   max-width: 600px;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transition: transform 0.9s, box-shadow 0.9s, width 0.9s, padding 0.9s;
-  position: relative; 
-  left: -48%;
-  top: 20%;
-  padding: 2rem; 
-  background-color: rgba(255, 255, 255, 0.9); 
-  text-align: center; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease, border 0.3s ease;
+  position: relative;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+  border: 2px solid transparent; 
 }
 
-/* Efecto de expansión y sombreado 3D al pasar el cursor */
+
 .registro-form:hover {
-  transform: scale(1.03) perspective(1000px) rotateY(14deg);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25); 
-  width: 95%; 
-  padding: 2.5rem; 
+  transform: translateY(-15px) scale(1.02); 
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7); 
+  padding: 2.5rem;
+  border-color: #003d5b; 
+  border-width: 2px; 
 }
 
-/* Efecto de sombreado 3D adicional al hacer clic */
+
 .registro-form:active {
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); 
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); 
+  border-color: #003d5b; 
 }
 
 /* Estilos para los labels y campos de formulario */
 .registro-form .form-label {
-  font-family: 'Roboto', sans-serif; 
+  font-family: 'Roboto', sans-serif;
   font-weight: bold;
   color: #333;
 }
@@ -50,12 +51,12 @@
   border: 1px solid #ddd;
   padding: 0.75rem 1rem;
   font-size: 1rem;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .registro-form .form-control:focus {
   border-color: #003d5b;
-  box-shadow: 0 0 0 0.2rem rgba(0, 61, 91, 0.1); 
+  box-shadow: 0 0 0 0.2rem rgba(0, 61, 91, 0.1);
 }
 
 /* Estilos para los botones */
@@ -66,12 +67,12 @@
   font-size: 1rem;
   padding: 0.75rem;
   font-weight: bold;
-  transition: background-color 0.3s, box-shadow 0.3s;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .registro-form .btn-primary:hover {
   background-color: #002a44;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .registro-form .btn-outline-secondary {
@@ -81,7 +82,7 @@
   font-size: 1rem;
   padding: 0.75rem;
   font-weight: bold;
-  transition: color 0.3s, border-color 0.3s;
+  transition: color 0.3s ease, border-color 0.3s ease;
 }
 
 .registro-form .btn-outline-secondary:hover {
@@ -90,17 +91,14 @@
   border-color: #003d5b;
 }
 
-/* Estilos para las alertas */
+
 .alert {
   border-radius: 8px;
-  font-size: 1rem; 
+  font-size: 1rem;
 }
 
-/* Ajustes adicionales para mejorar la experiencia en dispositivos móviles */
 @media (max-width: 768px) {
   .registro-form {
-    left: 0;
-    top: 0;
     padding: 1.5rem;
     width: 100%;
     max-width: none;

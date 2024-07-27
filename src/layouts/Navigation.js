@@ -37,6 +37,12 @@ function Navigation() {
             <Nav.Link as={NavLink} to="/ver_citas" className="nav-link">
               Ver mis citas
             </Nav.Link>
+            <Nav.Link as={NavLink} to="/aviso_privacidad" className="nav-link">
+              Aviso de Privacidad
+            </Nav.Link>
+            <Nav.Link as={NavLink} to="/sobre_nosotros" className="nav-link">
+              Sobre Nosotros
+            </Nav.Link> 
           </Nav>
           <Nav className="ml-auto">
             <NavDropdown title="Cuenta" id="account-nav-dropdown" align="end">

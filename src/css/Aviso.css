@@ -1,0 +1,52 @@
+
+.avisoBackground {
+    background-image: url('/public/doc17.jpg'); 
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    padding: 40px 20px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+/* Contenedor del contenido */
+.avisoprivacidadContainer {
+    background: rgba(255, 255, 255, 0.7); 
+    border-radius: 15px; 
+    padding: 30px; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
+    max-width: 800px; 
+    width: 100%; 
+    transition: transform 0.7s ease, box-shadow 0.7s ease; 
+}
+
+/* Efecto de expansión y sombra en hover */
+.avisoprivacidadContainer:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); 
+}
+
+/* Estilo para las filas */
+.avisoprivacidadRow {
+    margin-bottom: 25px; 
+}
+
+/* Estilo para las columnas */
+.avisoCol {
+    text-align: center;
+}
+
+/* Estilo para el título */
+.avisoTitle {
+    font-size: 2.5em; 
+    margin-bottom: 25px; 
+    color: #222; 
+}
+
+/* Estilo para el texto */
+.avisoText {
+    font-size: 1.2em; 
+    color: rgb(44, 43, 43); 
+    line-height: 1.6; 
+}

@@ -10,7 +10,8 @@ import Navigation from "./layouts/Navigation";
 import Citas from "./components/Citas";
 import 'primeicons/primeicons.css';
 import VerCitas from "./components/VerCitas";
-        
+import Aviso from "./components/Aviso";
+import SobreNosotros from "./components/SobreNosotros"; 
 
 function App() {
   return (
@@ -18,11 +19,13 @@ function App() {
       <BrowserRouter>
         <Navigation />
         <Routes>
-        <Route path="/" Component={Login}></Route>
-        <Route path="/registro" Component={Registro}></Route>
-          <Route path="/home" Component={Home}></Route>
-          <Route path="/nueva_cita" Component={Citas}></Route>
-          <Route path="/ver_citas" Component={VerCitas}></Route>
+          <Route path="/" element={<Login />} />
+          <Route path="/registro" element={<Registro />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/nueva_cita" element={<Citas />} />
+          <Route path="/ver_citas" element={<VerCitas />} />
+          <Route path="/aviso_privacidad" element={<Aviso />} />
+          <Route path="/sobre_nosotros" element={<SobreNosotros />} /> 
         </Routes>
       </BrowserRouter>
     </PrimeReactProvider>

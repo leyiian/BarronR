@@ -1,0 +1,75 @@
+
+.sobreNosotrosBackground {
+    background-image: url('/public/doc16.jpg'); 
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    padding: 40px 20px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+/* Contenedor del contenido */
+.sobreNosotrosContainer {
+    background: rgba(255, 255, 255, 0.7); 
+    border-radius: 15px; 
+    padding: 30px; 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
+    max-width: 800px; 
+    margin: 0 auto; 
+    transition: transform 0.7s ease, box-shadow 0.7s ease; 
+}
+
+
+.sobreNosotrosContainer:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); 
+}
+
+/* Estilo para las filas */
+.sobreNosotrosRow {
+    margin-bottom: 25px; 
+}
+
+/* Estilo para las columnas */
+.sobreNosotrosCol {
+    text-align: center;
+}
+
+/* Estilo para el título */
+.sobreNosotrosTitle {
+    font-size: 2.5em; 
+    margin-bottom: 25px; 
+    color: #222; 
+    font-weight: 600; 
+    text-transform: uppercase; 
+}
+
+/* Estilo para el texto */
+.sobreNosotrosText {
+    font-size: 1.1em; 
+    color: rgb(39, 39, 39); 
+    line-height: 1.7; 
+    margin-bottom: 15px; 
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .sobreNosotrosBackground {
+        padding: 20px; 
+    }
+
+    .sobreNosotrosContainer {
+        padding: 20px; 
+        max-width: 100%; 
+    }
+
+    .sobreNosotrosTitle {
+        font-size: 2em; 
+    }
+
+    .sobreNosotrosText {
+        font-size: 1em; 
+    }
+}
