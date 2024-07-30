@@ -19,9 +19,9 @@ function App() {
       <BrowserRouter>
         <Navigation />
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/nueva_cita" element={<Citas />} />
           <Route path="/ver_citas" element={<VerCitas />} />
           <Route path="/aviso_privacidad" element={<Aviso />} />

@@ -37,7 +37,7 @@ function Registro() {
         formData
       );
       if (response.data === "Ok") {
-        navigate("/");
+        navigate("/login");
       } else {
         setError("Error al registrar. Intente de nuevo.");
       }
@@ -140,7 +140,7 @@ function Registro() {
                 </Button>
                 <Button
                   variant="outline-secondary"
-                  onClick={() => navigate("/")}
+                  onClick={() => navigate("/login")}
                 >
                   Iniciar Sesión
                 </Button>

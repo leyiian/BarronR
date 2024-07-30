@@ -4,6 +4,7 @@ import { Calendar } from "primereact/calendar";
 import { useNavigate } from "react-router-dom";
 import instance from "../Config/AxiosConfig";
 import "../css/Citas.css"; // Importación del CSS
+import useAuth from "../Service/Auth";
 
 function Citas() {
   const navigate = useNavigate();
@@ -14,10 +15,12 @@ function Citas() {
     fecha: null,
     Observaciones: " ",
     estado: "Pendiente",
-    id_especialidades: null,
+    id_especialidades: "",
     id_consultorio: null,
     id_doctor: null,
   });
+
+  useAuth();
 
   useEffect(() => {
     const obtenerEspecialidades = async () => {
@@ -46,19 +49,26 @@ function Citas() {
   };
 
   const handleEspecialidadChange = (e) => {
-    setFormData({ ...formData, id_especialidades: e.target.value });
+    const { value } = e.target;
+    setFormData({ ...formData, id_especialidades: value });
+
+    if (value === "") {
+      setError("Debe seleccionar una especialidad.");
+    } else {
+      setError("");
+    }
   };
 
   const guardarCita = async (e) => {
     e.preventDefault();
     setError("");
 
-    try {
-      if (!formData.fecha) {
-        setError("Por favor complete todos los campos.");
-        return;
-      }
+    if (!formData.fecha || !formData.id_especialidades) {
+      setError("Por favor complete todos los campos.");
+      return;
+    }
 
+    try {
       const response = await instance.post(`/cita/guardar`, formData);
       if (response.data === "Ok") {
         navigate("/ver_citas");
@@ -76,9 +86,7 @@ function Citas() {
       <Container className="citasContainer">
         <Row className="citasRow">
           <Col md={12} className="citasCol">
-            <h2 className="text-center citasTitle">
-              Registrar Cita
-            </h2>
+            <h2 className="text-center citasTitle">Registrar Cita</h2>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={guardarCita} className="citasForm">
               <Form.Group controlId="formFecha" className="mb-4">
@@ -104,7 +112,7 @@ function Citas() {
                   aria-label="Seleccione una especialidad"
                   value={formData.id_especialidades}
                   onChange={handleEspecialidadChange}
-                  className="citasSelect"
+                  className={`citasSelect ${error ? "is-invalid" : ""}`}
                 >
                   <option value="">Seleccione una especialidad</option>
                   {especialidades.map((especialidad) => (
@@ -113,6 +121,9 @@ function Citas() {
                     </option>
                   ))}
                 </Form.Select>
+                {error && formData.id_especialidades === "" && (
+                  <div className="invalid-feedback">{error}</div>
+                )}
               </Form.Group>
               <div className="d-grid gap-2">
                 <Button

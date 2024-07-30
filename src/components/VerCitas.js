@@ -5,6 +5,7 @@ import { DataTable } from "primereact/datatable";
 import { Tag } from "primereact/tag";
 import instance from "../Config/AxiosConfig";
 import "../css/VerCitas.css"; // Asegúrate de que la ruta sea correcta
+import useAuth from "../Service/Auth";
 
 function VerCitas() {
   const [citas, setCitas] = useState([]);
@@ -13,6 +14,8 @@ function VerCitas() {
   const onInputChange = (e) => {
     setGlobalFilter(e.target.value); // Actualizamos el filtro global
   };
+
+  useAuth();
 
   useEffect(() => {
     fetchCitas();

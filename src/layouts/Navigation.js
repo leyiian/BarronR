@@ -5,9 +5,10 @@ import "../css/Navbar.css"; // Archivo CSS para estilos personalizados
 
 function Navigation() {
   const location = useLocation();
+  const token = localStorage.getItem('token'); // Obtiene el token del localStorage
 
   // Lista de rutas donde no queremos mostrar la navbar
-  const hideNavbarRoutes = ["/", "/registro"];
+  const hideNavbarRoutes = ["/login", "/registro"];
 
   // Verifica si la ruta actual está en la lista de rutas ocultas
   const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname);
@@ -25,33 +26,40 @@ function Navigation() {
   return (
     <Navbar expand="lg" className="custom-navbar">
       <Container>
-        <Navbar.Brand as={NavLink} to="/home" className="custom-brand">
+        <Navbar.Brand as={NavLink} to="/" className="custom-brand">
           Hospital Yes I DO
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link as={NavLink} to="/nueva_cita" className="nav-link">
-              Generar cita
-            </Nav.Link>
-            <Nav.Link as={NavLink} to="/ver_citas" className="nav-link">
-              Ver mis citas
-            </Nav.Link>
+            {token && ( // Verifica si el token existe antes de mostrar estos enlaces
+              <>
+                <Nav.Link as={NavLink} to="/nueva_cita" className="nav-link">
+                  Generar cita
+                </Nav.Link>
+                <Nav.Link as={NavLink} to="/ver_citas" className="nav-link">
+                  Ver mis citas
+                </Nav.Link>
+              </>
+            )}
             <Nav.Link as={NavLink} to="/aviso_privacidad" className="nav-link">
               Aviso de Privacidad
             </Nav.Link>
             <Nav.Link as={NavLink} to="/sobre_nosotros" className="nav-link">
               Sobre Nosotros
-            </Nav.Link> 
+            </Nav.Link>
           </Nav>
           <Nav className="ml-auto">
             <NavDropdown title="Cuenta" id="account-nav-dropdown" align="end">
-              <NavDropdown.Item as={NavLink} to="/">
-                Login
-              </NavDropdown.Item>
-              <NavDropdown.Item as={NavLink} to="/" onClick={handleLogout}>
-                Logout
-              </NavDropdown.Item>
+              {!token ? ( // Muestra el botón de Login solo si no hay token
+                <NavDropdown.Item as={NavLink} to="/login">
+                  Login
+                </NavDropdown.Item>
+              ) : (
+                <NavDropdown.Item as={NavLink} to="/" onClick={handleLogout}>
+                  Logout
+                </NavDropdown.Item>
+              )}
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
@@ -61,3 +69,4 @@ function Navigation() {
 }
 
 export default Navigation;
+

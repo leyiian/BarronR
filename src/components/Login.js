@@ -41,7 +41,7 @@ function Login() {
           nombreUsuario: response.data.nombreUsuario,
         });
 
-        navigate("/home");
+        navigate("/");
       } else {
         setError(response.data.error);
       }
