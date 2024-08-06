@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Form } from "react-bootstrap";
+import { Container, Form, Modal, Button } from "react-bootstrap";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
 import { Tag } from "primereact/tag";
@@ -9,7 +9,34 @@ import useAuth from "../Service/Auth";
 
 function VerCitas() {
   const [citas, setCitas] = useState([]);
-  const [globalFilter, setGlobalFilter] = useState(""); // Estado para el filtro global
+  const [medicamentos, setMedicamentos] = useState([]);
+  const [globalFilter, setGlobalFilter] = useState(""); 
+  const [showModal, setShowModal] = useState(false);
+  const [selectedCita, setSelectedCita] = useState(null);
+
+
+  const handleShowModal = async (cita) => {
+    setSelectedCita(cita);
+    try {
+      const response = await instance.post(`/medicamentos`, { id_cita: cita.id });
+      setMedicamentos(response.data.medicamentos);
+    } catch (error) {
+      console.error("Error al obtener los medicamentos:", error);
+      setMedicamentos([]);
+    }
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedCita(null);
+  };
+
+  const actionBodyTemplate = (rowData) => {
+    return (
+      <Button className="pi pi-file rounded-pill" variant="outline-info" onClick={() => handleShowModal(rowData)}/>
+    );
+  };
 
   const onInputChange = (e) => {
     setGlobalFilter(e.target.value); // Actualizamos el filtro global
@@ -95,58 +122,68 @@ function VerCitas() {
   return (
     <div className="verCitasBackground">
       <Container className="verCitasContainer">
-        <h1 className="my-4 verCitasTitle">
-          Ver Estado de mis Citas
-        </h1>
+        <h1 className="my-4 verCitasTitle">Ver Estado de mis Citas</h1>
 
         <div className="card verCitasCard">
           <DataTable
             value={citas}
             editMode="row"
             dataKey="id"
-            paginator={true} // Habilitar paginación
-            rows={10} // Número de filas por página
-            globalFilter={globalFilter} // Aplicar filtro global
+            paginator={true}
+            rows={10}
+            globalFilter={globalFilter}
             emptyMessage="No se encontraron citas."
-            header={filterHeader} // Componente de filtro global
-            tableStyle={{ minWidth: "100%" }} // Asegúrate de que la tabla use el 100% del ancho del contenedor
+            header={filterHeader}
+            tableStyle={{ minWidth: "100%" }}
             className="verCitasTable"
           >
             <Column field="id" header="Id" style={{ width: "5%" }} />
-            <Column
-              field="nombre_paciente"
-              header="Nombre"
-              style={{ width: "20%" }}
-            />
+            <Column field="nombre_paciente" header="Nombre" style={{ width: "20%" }} />
             <Column field="fecha" header="Fecha" style={{ width: "15%" }} />
-            <Column
-              field="Observaciones"
-              header="Observaciones"
-              style={{ width: "25%" }}
-            />
-            <Column
-              field="id_consultorio"
-              header="Consultorio"
-              style={{ width: "10%" }}
-            />
-            <Column
-              field="nombreDoc"
-              header="Doctor"
-              style={{ width: "15%" }}
-            />
-            <Column
-              field="especialidad"
-              header="Especialidad"
-              style={{ width: "10%" }}
-            />
-            <Column
-              field="estado"
-              header="Estado"
-              body={statusBodyTemplate}
-              style={{ width: "15%" }}
-            />
+            <Column field="Observaciones" header="Observaciones" style={{ width: "25%" }} />
+            <Column field="id_consultorio" header="Consultorio" style={{ width: "10%" }} />
+            <Column field="nombreDoc" header="Doctor" style={{ width: "15%" }} />
+            <Column field="especialidad" header="Especialidad" style={{ width: "10%" }} />
+            <Column field="estado" header="Estado" body={statusBodyTemplate} style={{ width: "15%" }} />
+            <Column header="Acciones" body={actionBodyTemplate} style={{ width: "10%" }} />
           </DataTable>
         </div>
+
+        {/* Modal para mostrar detalles de la cita */}
+        <Modal show={showModal} onHide={handleCloseModal}>
+      <Modal.Header closeButton>
+        <Modal.Title>Ver Medicamentos Recetados</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        {selectedCita && (
+          <div>
+            <p><strong>Id:</strong> {selectedCita.id}</p>
+            <p><strong>Nombre del Paciente:</strong> {selectedCita.nombre_paciente}</p>
+          </div>
+        )}
+        <hr />
+        <h5>Medicamentos Recetados</h5>
+        {medicamentos.length > 0 ? (
+          <ul>
+            {medicamentos.map((medicamento, index) => (
+              <li key={index}>
+                <strong>Medicamento:</strong> {medicamento.nombre} <br />
+                <strong>Cantidad:</strong> {medicamento.cantidad} {medicamento.unidad} <br />
+                <strong>Cada Cuánto:</strong> {medicamento.cadaCuando} <br />
+                <strong>Duración:</strong> {medicamento.cuantosDias} días
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No se encontraron medicamentos recetados para esta cita.</p>
+        )}
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleCloseModal}>
+          Cerrar
+        </Button>
+      </Modal.Footer>
+    </Modal>
       </Container>
     </div>
   );

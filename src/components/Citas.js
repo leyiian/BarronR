@@ -13,7 +13,7 @@ function Citas() {
   const [formData, setFormData] = useState({
     idUsr: null,
     fecha: null,
-    Observaciones: " ",
+    Observaciones: "",
     estado: "Pendiente",
     id_especialidades: "",
     id_consultorio: null,
